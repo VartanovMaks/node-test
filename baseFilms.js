@@ -45,7 +45,7 @@ const films = [
             "47metersdownuncaged_5.png",
             "47metersdownuncaged_6.png",
         ],
-        trailer : "https://www.youtube.com/watch?v=X4fIFbzj8QA"
+        trailer : "https://www.youtube.com/embed/AvXjx8SZbv8"
     },
     {
         id:1,
@@ -100,7 +100,7 @@ const films = [
             "it_06.png",
             
         ],
-        trailer : "https://www.youtube.com/watch?v=ztLymbD0b8k"
+        trailer : "https://www.youtube.com/embed/FnCdOQsX5kc"
     },
     {
         id:2,
@@ -139,7 +139,7 @@ const films = [
             "quiet_place_02.png",
             "quiet_place_03.png",
         ],
-        trailer : "https://www.youtube.com/watch?v=J-G1rs7N-XE"
+        trailer : "https://www.youtube-nocookie.com/embed/WR7cc5t7tv8?controls=0"
     },
 ]
 
