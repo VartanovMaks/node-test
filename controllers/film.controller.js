@@ -1,20 +1,26 @@
-const films = require('../baseFilms');
+const {Film} = require('../dataBase/index');
 
 module.exports = {
 
-    getAllFilms : (req,res)=>{
-
-        res.json(films);
+    getAllFilms : async (req,res, next)=>{
+        try {
+            const films = await Film.find({});
+            res.json(films);
+        } catch (e){
+            next(e);
+        }
     },
 
-    getFilmById : (req,res)=>{
-
+    getFilmById : async (req,res, next)=>{
         id= req.params.filmID;
-        res.json(films[id]);
+        try {
+            const film = await Film.findById(id);
+            if (!film) {
+                throw new Error(`film with id:${id} not found`);
+              }
+            res.json(film);
+        } catch(e){
+            next(e);
+        }
     }
-    
-    // getPoster : (req,res)=>{
-    //     const response = `<img src="http://localhost:3000/data/0/poster/${films[0].poster}" />`
-    //     res.json(response)
-    // }
 }
