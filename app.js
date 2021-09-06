@@ -2,8 +2,9 @@ const express = require('express');
 const fs=require('fs');
 const path = require('path');
 const cors = require('cors');
-const mongo = require('mongoose')
+const mongoose = require('mongoose')
 const router = require('./routes/film.router');
+const uri = "mongodb+srv://Max:admin@cluster0.spcof.mongodb.net/horror-films?retryWrites=true&w=majority";
 
 const app = express();
 _mongooseConnector();
@@ -17,10 +18,17 @@ app.use(express.static(staticPath));
 
 app.use('/films', router)
 
+
 app.listen(3001, () => {
     console.log('App listen 3001');
   })
 
   function _mongooseConnector() {
-  mongo.connect('mongodb://localhost:27017/horror-films', { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, })
+      .then((con) => {
+        console.log(con.connection);
+        console.log('MongoDb connected')
+      })
+      .catch(err => console.log(err));
+  // mongo.connect('mongodb://localhost:27017/horror-films', { useNewUrlParser: true, useUnifiedTopology: true });
 }

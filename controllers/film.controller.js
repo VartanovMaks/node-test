@@ -5,6 +5,7 @@ module.exports = {
     getAllFilms : async (req,res, next)=>{
         try {
             const films = await Film.find({});
+            console.log(films);
             res.json(films);
         } catch (e){
             next(e);
