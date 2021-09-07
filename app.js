@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose')
 const router = require('./routes/film.router');
-const uri = "mongodb+srv://Max:admin@cluster0.spcof.mongodb.net/horror-films?retryWrites=true&w=majority";
+const uri = "insert here ref to database";
 
 const app = express();
 _mongooseConnector();
