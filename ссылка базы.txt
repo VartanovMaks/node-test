@@ -1,1 +1,0 @@
-mongodb+srv://Max:admin@cluster0.spcof.mongodb.net/horror-films?retryWrites=true&w=majority
