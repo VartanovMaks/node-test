@@ -2,10 +2,12 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const router = require('./routes/film.router');
+const { ENV_CONSTANT } = require('./constants');
 
-const uri = 'insert here ref to database';
+const uri = ENV_CONSTANT.DB_CONNECTION_URL;
 
 const app = express();
 // eslint-disable-next-line no-use-before-define
@@ -20,9 +22,9 @@ app.use(express.static(staticPath));
 
 app.use('/films', router);
 
-app.listen(3001, () => {
+app.listen(ENV_CONSTANT.PORT, () => {
   // eslint-disable-next-line no-console
-  console.log('App listen 3001');
+  console.log(`App listen ${ENV_CONSTANT.PORT}`);
 });
 
 // eslint-disable-next-line no-underscore-dangle
@@ -38,5 +40,4 @@ function _mongooseConnector() {
     })
     // eslint-disable-next-line no-console
     .catch((err) => console.log(err));
-  // mongo.connect('mongodb://localhost:27017/horror-films', { useNewUrlParser: true, useUnifiedTopology: true });
 }
