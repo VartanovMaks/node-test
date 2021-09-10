@@ -24,4 +24,18 @@ module.exports = {
       next(e);
     }
   },
+  createFilm: async (req, res, next) => {
+    const { body: filmData } = req;
+
+    try {
+      const film = await Film.create(JSON.parse(JSON.stringify(filmData)));
+      console.log(film);
+      if (!film) {
+        throw new Error(`film with id:${filmData.name} could not be created`);
+      }
+      res.json(film);
+    } catch (e) {
+      next(e);
+    }
+  },
 };

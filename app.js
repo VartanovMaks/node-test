@@ -14,7 +14,7 @@ _mongooseConnector();
 
 app.use(cors());
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 const staticPath = path.join(__dirname, 'data');
 app.use(express.static(staticPath));

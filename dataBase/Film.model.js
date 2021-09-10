@@ -3,22 +3,22 @@ const { Schema, model } = require('mongoose');
 const filmSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
   },
   year: {
     type: Number,
-    required: true,
+    // required: true,
   },
   country: {
     type: String,
-    required: true,
+    // required: true,
   },
   category: String,
   director: {
     name:
             {
               type: String,
-              required: true,
+              // required: true,
             },
     photo: String,
     rewards: [String],
@@ -27,7 +27,7 @@ const filmSchema = new Schema({
     {
       name: {
         type: String,
-        required: true,
+        // required: true,
       },
       photo: String,
       sex: String,
