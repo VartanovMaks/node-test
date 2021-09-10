@@ -1,11 +1,10 @@
-/* eslint-disable linebreak-style */
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const router = require('./routes/film.router');
 
-const uri = 'insert here ref to database';
+const uri = 'mongodb+srv://Max:admin@cluster0.spcof.mongodb.net/horror-films?retryWrites=true&w=majority';
 
 const app = express();
 // eslint-disable-next-line no-use-before-define
