@@ -1,1 +1,1 @@
-module.exports.Film=require('./Film.model');
+module.exports.Film = require('./Film.model');
