@@ -2,10 +2,13 @@
 const router = require('express').Router();
 
 const filmController = require('../controllers/film.controller');
-const { filmMiddleware } = require('../middlewares');
+const { filmMiddleware, fileMiddleware } = require('../middlewares');
 
 router.get('/', filmController.getAllFilms);
 router.get('/:filmID', filmController.getFilmById);
-router.post('/', filmMiddleware.checkFilmValidity, filmController.createFilm);
+router.post('/',
+  fileMiddleware.checkPoster,
+  filmMiddleware.checkFilmValidity,
+  filmController.createFilm);
 
 module.exports = router;

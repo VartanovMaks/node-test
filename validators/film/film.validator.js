@@ -26,7 +26,7 @@ module.exports = {
     category: Joi.string().max(20).default('ужасы'),
     director: Joi.array().items(directorSchema),
     actors: Joi.array().items(actorSchema),
-    poster: Joi.string().max(30).regex(REGEX.IMG_REGEX).required(),
+    poster: Joi.string().max(30).regex(REGEX.IMG_REGEX),
     images: Joi.array().items(Joi.string().regex(REGEX.IMG_REGEX).max(40)),
     trailer: Joi.string().max(100),
   }),
