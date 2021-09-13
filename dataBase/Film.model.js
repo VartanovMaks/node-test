@@ -14,15 +14,17 @@ const filmSchema = new Schema({
     // required: true,
   },
   category: String,
-  director: {
-    name:
-            {
-              type: String,
-              // required: true,
-            },
-    photo: String,
-    rewards: [String],
-  },
+  director: [
+    {
+      name:
+        {
+          type: String,
+          // required: true,
+        },
+      photo: String,
+      rewards: [String],
+    },
+  ],
   actors: [
     {
       name: {

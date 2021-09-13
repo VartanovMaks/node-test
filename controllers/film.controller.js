@@ -28,8 +28,8 @@ module.exports = {
     const { body: filmData } = req;
 
     try {
-      const film = await Film.create(JSON.parse(JSON.stringify(filmData)));
-      console.log(film);
+      const film = await Film.create(filmData);
+
       if (!film) {
         throw new Error(`film with id:${filmData.name} could not be created`);
       }

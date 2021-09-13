@@ -1,0 +1,520 @@
+[
+    {
+        "director": [
+			{
+            "rewards": [],
+            "name": "Йоханнес Робертс",
+            "photo": "Johannes_Roberts.png"
+			},
+		],
+        "images": [
+            "47metersdownuncaged_1.png",
+            "47metersdownuncaged_2.png",
+            "47metersdownuncaged_3.png",
+            "47metersdownuncaged_4.png",
+            "47metersdownuncaged_5.png",
+            "47metersdownuncaged_6.png"
+        ],
+        "name": "Синяя бездна 2",
+        "year": 2019,
+        "country": "Великобритания",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Софи Нелисс",
+                "photo": "Sophie_Nélisse.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Корина Фокс",
+                "photo": "Corinne_Foxx.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Бриэнн Тджу",
+                "photo": "Brienne_Tju.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Систин Роуз Сталлоне",
+                "photo": "Sistine_Rose_Stallone.jpg",
+                "sex": "female"
+            }
+        ],
+        "poster": "47metersdownuncaged.webp",
+        "trailer": "https://www.youtube.com/embed/AvXjx8SZbv8"
+    },
+    {
+        "director":[ 
+			{
+            "rewards": [],
+            "name": "Андрес Мускетти",
+            "photo": "Johannes_Roberts.png"
+			}
+	],
+        "images": [
+            "it_01.png",
+            "it_02.png",
+            "it_03.png",
+            "it_04.png",
+            "it_05.png",
+            "it_06.png"
+        ],
+        "name": "Оно",
+        "year": 2017,
+        "country": "США",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Билл Скарсгард",
+                "photo": "Bill_Skarsgard.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Финн Вулфард",
+                "photo": "Finn_Wolfhard.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "София Лиллис",
+                "photo": "Sophia_Lillis.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Джейден Мартелл",
+                "photo": "Jaeden_Martell.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Николас Хэмилтон",
+                "photo": "Nicholas_Hamilton.jpg",
+                "sex": "male"
+            }
+        ],
+        "poster": "it.jpg",
+        "trailer": "https://www.youtube.com/embed/FnCdOQsX5kc"
+    },
+    {
+        "director":[
+			{
+            "rewards": [],
+            "name": "Джон Красински",
+            "photo": "John_Krasinski.jpg"
+			}
+		],
+        "images": [
+            "quiet_place_01.png",
+            "quiet_place_02.png",
+            "quiet_place_03.png"
+        ],
+        "name": "Тихое место",
+        "year": 2018,
+        "country": "США",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Эмили Блант",
+                "photo": "plug.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Ноа Джуп",
+                "photo": "Noah_Jupe.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Милли Симмондс",
+                "photo": "Millicent_Simmonds.jpg",
+                "sex": "female"
+            }
+        ],
+        "poster": "quiet_place.jpg",
+        "trailer": "https://www.youtube-nocookie.com/embed/WR7cc5t7tv8?controls=0"
+    },
+    {
+        "director": [
+			{
+            "rewards": [],
+            "name": "Марк Уотерс",
+            "photo": "Mark_Waters.jpg"
+			}
+		],
+        "images": [
+            "vampire_academy_01.png",
+            "vampire_academy_02.png",
+            "vampire_academy_03.png",
+            "vampire_academy_04.png",
+            "vampire_academy_05.png",
+            "vampire_academy_06.png",
+            "vampire_academy_07.png",
+            "vampire_academy_08.png"
+        ],
+        "name": "Академия вампиров",
+        "year": 2014,
+        "country": "США",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Зои Дойч",
+                "photo": "Zoey_Deutch.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Люси Фрай",
+                "photo": "Lucy_Fry.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Гэбриел Бирн",
+                "photo": "Gabriel_Byrne.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Доминик Шервуд",
+                "photo": "Dominic_Sherwood.jpg",
+                "sex": "male"
+            }
+        ],
+        "poster": "vampire_academy.webp",
+        "trailer": "https://www.youtube.com/embed/AeGZCZRpFEA"
+    },
+    {
+        "director": [
+			{
+            "rewards": [],
+            "name": "Роберт Родригес",
+            "photo": "Robert_Rodriguez.jpg"
+			}
+		],
+        "images": [
+            "From_Dusk_Till_Dawn_01.png",
+            "From_Dusk_Till_Dawn_02.png",
+            "From_Dusk_Till_Dawn_03.png",
+            "From_Dusk_Till_Dawn_04.png"
+        ],
+        "name": "От заката до рассвета",
+        "year": 1995,
+        "country": "США",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Джордж Клуни",
+                "photo": "George_Clooney.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Харви Кейтель",
+                "photo": "Harvey_Keitel.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Квентин Тарантино",
+                "photo": "",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Джульетт Льюис",
+                "photo": "Juliette_Lewis.jpg",
+                "sex": "female"
+            }
+        ],
+        "poster": "From_Dusk_Till_Dawn.jpeg",
+        "trailer": "https://www.youtube.com/embed/PpVAZL6aJzc"
+    },
+    {
+        "director": [
+			{
+				"rewards": [],
+				"name": "Джемейн Клемент",
+				"photo": "Jemaine_Clement.jpg"
+			}
+		],
+        "images": [
+            "What_We_Do_in_the_Shadows_01.png",
+            "What_We_Do_in_the_Shadows_02.png",
+            "What_We_Do_in_the_Shadows_03.png",
+            "What_We_Do_in_the_Shadows_04.png",
+            "What_We_Do_in_the_Shadows_05.png"
+        ],
+        "name": "Реальные упыри",
+        "year": 2014,
+        "country": "Новая Зеландия",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Джонатан Бруг",
+                "photo": "Jonny_Brugh.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Кори Гонсалес-Макуэр",
+                "photo": "Cori_Gonzalez_Macuer.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Стью Рутерфорд",
+                "photo": "Stu_Rutherford.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Джеки ван Бик",
+                "photo": "Jackie_van_Beek.jpg",
+                "sex": "female"
+            }
+        ],
+        "poster": "What_We_Do_in_the_Shadows.jpg",
+        "trailer": "https://www.youtube.com/embed/IAZEWtyhpes"
+    },
+    {
+        "director": {
+            "rewards": [],
+            "name": "Александр Ажа",
+            "photo": "Alexandre_Aja.jpg"
+        },
+        "images": [
+            "What_We_Do_in_the_Shadows_01.png",
+            "What_We_Do_in_the_Shadows_02.png",
+            "What_We_Do_in_the_Shadows_03.png",
+            "What_We_Do_in_the_Shadows_04.png",
+            "What_We_Do_in_the_Shadows_05.png"
+        ],
+        "_id": "6139ac166f3a6739097cc952",
+        "name": "Пираньи",
+        "year": 2010,
+        "country": "США",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Элизабет Шу",
+                "photo": "Elisabeth_Shue.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Стивен Р. МакКуин",
+                "photo": "Steven_McQueen.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Адам Скотт",
+                "photo": "Adam_Scott.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Джерри О’Коннелл",
+                "photo": "Jerry_OConnell.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Джессика Зор",
+                "photo": "Jessica_Szohr.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Келли Брук",
+                "photo": "Kelly_Brook.jpg",
+                "sex": "female"
+            }
+        ],
+        "poster": "Piranha.jpg",
+        "trailer": "https://www.youtube.com/embed/sU06fzUT14k"
+    },
+    {
+        "director": {
+            "rewards": [],
+            "name": "Джим Уайнорски",
+            "photo": "Jim_Wynorski.jpg"
+        },
+        "images": [
+            "Piranhaconda_01.png",
+            "Piranhaconda_02.png",
+            "Piranhaconda_03.png"
+        ],
+        "_id": "6139b0a66f3a6739097cc954",
+        "name": "Пираньяконда",
+        "year": 2012,
+        "country": "США",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Майкл Мэдсен",
+                "photo": "Michael_Madsen.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Рэйчел Хантер",
+                "photo": "Rachel_Hunter.jpg",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Райб Хиллс",
+                "photo": "Rib_Hillis.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Тери Ивенс",
+                "photo": "Terri_Ivens.jpg",
+                "sex": "female"
+            }
+        ],
+        "poster": "Piranhaconda.jpg",
+        "trailer": "https://www.youtube.com/embed/9cI8vV_aP3g"
+    },
+    {
+        "director": {
+            "rewards": [],
+            "name": "Джеффри Скотт Ландо",
+            "photo": ""
+        },
+        "images": [
+            "Roboshark_01.png",
+            "Roboshark_02.png",
+            "Roboshark_03.png",
+            "Roboshark_04.png"
+        ],
+        "_id": "6139b61d6f3a6739097cc955",
+        "name": "Акула-робот",
+        "year": 2015,
+        "country": "Канада",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Алексис Питерман",
+                "photo": "",
+                "sex": "female"
+            },
+            {
+                "rewards": [],
+                "name": "Мэтт Риппи",
+                "photo": "Matt_Rippy.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Найджел Барбер",
+                "photo": "Nigel_Barber.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Ванесса Грасс",
+                "photo": "Vanessa_Grasse.jpg",
+                "sex": "female"
+            }
+        ],
+        "poster": "Roboshark.jpg",
+        "trailer": "https://www.youtube.com/embed/BHDDN6Pi6ck"
+    },
+    {
+        "director": {
+            "rewards": [],
+            "name": "Джефф Баэна",
+            "photo": ""
+        },
+        "images": [
+            "Life_After_Beth_01.png",
+            "Life_After_Beth_02.png",
+            "Life_After_Beth_03.png",
+            "Life_After_Beth_04.png",
+            "Life_After_Beth_05.png"
+        ],
+        "_id": "6139ba5a6f3a6739097cc956",
+        "name": "Если твоя девушка – зомби",
+        "year": 2014,
+        "country": "США",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "name": "Дэйн ДеХаан",
+                "photo": "Dane_DeHaan.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Джон Си Райли",
+                "photo": "John_Reilly.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "name": "Обри Плаза",
+                "photo": "Aubrey_Plaza.jpg",
+                "sex": "female"
+            }
+        ],
+        "poster": "Life_After_Beth.jpg",
+        "trailer": "https://www.youtube.com/embed/JjysgllBzHQ"
+    },
+    {
+        "director": {
+            "rewards": [],
+            "name": "Рязанов",
+            "photo": "Johannes_Roberts.png"
+        },
+        "images": [
+            "it_01.png",
+            "it_06.png"
+        ],
+        "_id": "613c7c84190d8327f81f1cae",
+        "name": "Гусарская баллада",
+        "year": 1970,
+        "country": "СССР",
+        "category": "ужасы",
+        "actors": [
+            {
+                "rewards": [],
+                "_id": "613c7c84190d8327f81f1caf",
+                "name": "Билл Скарсгард",
+                "photo": "Bill_Skarsgard.jpg",
+                "sex": "male"
+            },
+            {
+                "rewards": [],
+                "_id": "613c7c84190d8327f81f1cb0",
+                "name": "Николас Хэмилтон",
+                "photo": "Nicholas_Hamilton.jpg",
+                "sex": "male"
+            }
+        ],
+        "poster": "it.jpg",
+        "trailer": "https://www.youtube.com/embed/FnCdOQsX5kc",
+        "createdAt": "2021-09-11T09:53:08.495Z",
+        "updatedAt": "2021-09-11T09:53:08.495Z",
+        "__v": 0
+    }
+]
