@@ -290,11 +290,13 @@
         "trailer": "https://www.youtube.com/embed/IAZEWtyhpes"
     },
     {
-        "director": {
+        "director": [
+			{
             "rewards": [],
             "name": "Александр Ажа",
             "photo": "Alexandre_Aja.jpg"
-        },
+			}
+		],
         "images": [
             "What_We_Do_in_the_Shadows_01.png",
             "What_We_Do_in_the_Shadows_02.png",
@@ -302,7 +304,6 @@
             "What_We_Do_in_the_Shadows_04.png",
             "What_We_Do_in_the_Shadows_05.png"
         ],
-        "_id": "6139ac166f3a6739097cc952",
         "name": "Пираньи",
         "year": 2010,
         "country": "США",
@@ -349,17 +350,18 @@
         "trailer": "https://www.youtube.com/embed/sU06fzUT14k"
     },
     {
-        "director": {
+        "director": [
+			{
             "rewards": [],
             "name": "Джим Уайнорски",
             "photo": "Jim_Wynorski.jpg"
-        },
+			}
+		],
         "images": [
             "Piranhaconda_01.png",
             "Piranhaconda_02.png",
             "Piranhaconda_03.png"
         ],
-        "_id": "6139b0a66f3a6739097cc954",
         "name": "Пираньяконда",
         "year": 2012,
         "country": "США",
@@ -394,18 +396,18 @@
         "trailer": "https://www.youtube.com/embed/9cI8vV_aP3g"
     },
     {
-        "director": {
+        "director": [{
             "rewards": [],
             "name": "Джеффри Скотт Ландо",
             "photo": ""
-        },
+        }
+		],
         "images": [
             "Roboshark_01.png",
             "Roboshark_02.png",
             "Roboshark_03.png",
             "Roboshark_04.png"
         ],
-        "_id": "6139b61d6f3a6739097cc955",
         "name": "Акула-робот",
         "year": 2015,
         "country": "Канада",
@@ -440,11 +442,11 @@
         "trailer": "https://www.youtube.com/embed/BHDDN6Pi6ck"
     },
     {
-        "director": {
+        "director": [{
             "rewards": [],
             "name": "Джефф Баэна",
-            "photo": ""
-        },
+            "photo": "plug.jpg"
+        }],
         "images": [
             "Life_After_Beth_01.png",
             "Life_After_Beth_02.png",
@@ -452,7 +454,6 @@
             "Life_After_Beth_04.png",
             "Life_After_Beth_05.png"
         ],
-        "_id": "6139ba5a6f3a6739097cc956",
         "name": "Если твоя девушка – зомби",
         "year": 2014,
         "country": "США",
@@ -490,7 +491,6 @@
             "it_01.png",
             "it_06.png"
         ],
-        "_id": "613c7c84190d8327f81f1cae",
         "name": "Гусарская баллада",
         "year": 1970,
         "country": "СССР",
