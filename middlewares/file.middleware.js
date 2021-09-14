@@ -1,20 +1,22 @@
+const { fileService } = require('./services');
+
 module.exports = {
 
   checkPoster: (req, res, next) => {
     try {
-      const files = Object.values(req.files);
-      //   const text = Object.values(req.text);
-      console.log(files);
-      console.log('========================');
-      const film = JSON.parse(req.body.data);
-      req.body = film;
-      console.log(req.body);
+      req.body = JSON.parse(req.body.data);
+      // const poster = Object.values(req.files.poster);
+      fileService.checkImageFile(req.files.poster);
+      req.poster = req.files.poster;
       next();
     } catch (e) {
       next(e);
     }
   },
   checkActorsPhoto: (req, res, next) => {
+    const actors = Object.values(req.files.actors);
+    fileService.checkImageFile(actors);
+    req.actors = actors;
     try {
       next();
     } catch (e) {
@@ -22,6 +24,9 @@ module.exports = {
     }
   },
   checkImages: (req, res, next) => {
+    const images = Object.values(req.files.images);
+    fileService.checkImageFile(images);
+    req.images = images;
     try {
       next();
     } catch (e) {

@@ -1,5 +1,7 @@
 /* eslint-disable linebreak-style */
 const { Film } = require('../dataBase/index');
+const { CONST: { POSTER, ACTORS, IMAGES } } = require('../constants');
+const { fileService } = require('../middlewares/services');
 
 module.exports = {
 
@@ -25,13 +27,34 @@ module.exports = {
     }
   },
   createFilm: async (req, res, next) => {
-    const { body: filmData } = req;
+    const {
+      actors, images, poster,
+      body: filmData,
+    } = req;
 
     try {
-      const film = await Film.create(filmData);
+      const createdFilm = await Film.create(filmData);
 
-      if (!film) {
+      if (!createdFilm) {
         throw new Error(`film with id:${filmData.name} could not be created`);
+      }
+      const { _id } = createdFilm;
+
+      fileService.uploadImages(images, IMAGES, _id);
+      fileService.uploadImages(actors, ACTORS, _id);
+      fileService.uploadImages(poster, POSTER, _id);
+
+      res.json(createdFilm);
+    } catch (e) {
+      next(e);
+    }
+  },
+  uploadFilmFilesById: async (req, res, next) => {
+    const id = req.params.filmID;
+    try {
+      const film = await Film.findById(id);
+      if (!film) {
+        throw new Error(`film with id:${id} not found`);
       }
       res.json(film);
     } catch (e) {

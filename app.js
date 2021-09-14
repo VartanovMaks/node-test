@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 const staticPath = path.join(__dirname, 'data');
 app.use(express.static(staticPath));
 
-app.use(fileUpload({}));
+app.use(fileUpload({ createParentPath: true }));
 app.use('/films', router);
 
 app.listen(ENV_CONSTANT.PORT, () => {
