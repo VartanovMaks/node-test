@@ -10,12 +10,12 @@ module.exports = {
     if (startIndex > 0) {
       results.previousPage = { page: page - 1, limit };
     }
-    if (endIndex < await Film.countDocuments().exec()) {
+    if (endIndex < await Film.countDocuments()) {
       results.nextPage = { page: page + 1, limit };
     }
 
     try {
-      results.result = await Film.find().limit(limit).skip(startIndex).exec();
+      results.result = await Film.find().limit(limit).skip(startIndex);
       res.paginatedResult = results;
       res.json(res.paginatedResult);
     } catch (error) {

@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const { Film } = require('../dataBase/index');
 const { paginateService } = require('../services');
 
