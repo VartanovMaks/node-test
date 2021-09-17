@@ -1,3 +1,3 @@
 module.exports = {
-  IMG_REGEX: '^\S+(\.(png|jpeg|jpg|webp))$',
+  IMG_REGEX: new RegExp(/^\S+(\.(png|jpeg|jpg|webp))$/),
 };
