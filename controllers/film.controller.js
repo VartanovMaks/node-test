@@ -1,12 +1,17 @@
 /* eslint-disable linebreak-style */
 const { Film } = require('../dataBase/index');
+const { paginateService } = require('../services');
 
 module.exports = {
 
   getAllFilms: async (req, res, next) => {
     try {
       const films = await Film.find({});
-      res.json(films);
+      if (Object.keys(req.query).length === 0) {
+        res.json(films);
+      } else {
+        paginateService.paginateData(films, req, res);
+      }
     } catch (e) {
       next(e);
     }
