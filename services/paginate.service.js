@@ -1,5 +1,7 @@
+const { Film } = require('../dataBase/index');
+
 module.exports = {
-  paginateData: async (model, req, res) => {
+  paginateData: async (req, res) => {
     const page = parseInt(req.query.page, 10);
     const limit = parseInt(req.query.limit, 10);
     const startIndex = (page - 1) * limit;
@@ -8,10 +10,16 @@ module.exports = {
     if (startIndex > 0) {
       results.previousPage = { page: page - 1, limit };
     }
-    if (endIndex < model.length) {
+    if (endIndex < await Film.countDocuments().exec()) {
       results.nextPage = { page: page + 1, limit };
     }
-    results.result = model.slice(startIndex, endIndex);
-    res.json(results);
+
+    try {
+      results.result = await Film.find().limit(limit).skip(startIndex).exec();
+      res.paginatedResult = results;
+      res.json(res.paginatedResult);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
   },
 };

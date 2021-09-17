@@ -6,11 +6,12 @@ module.exports = {
 
   getAllFilms: async (req, res, next) => {
     try {
-      const films = await Film.find({});
       if (Object.keys(req.query).length === 0) {
+        const films = await Film.find({});
         res.json(films);
       } else {
-        paginateService.paginateData(films, req, res);
+        paginateService.paginateData(req, res);
+        // res.json(res.paginatedResult);
       }
     } catch (e) {
       next(e);
