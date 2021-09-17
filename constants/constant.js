@@ -3,7 +3,7 @@ module.exports = {
   IMG_MIMETYPES: [
     'image/gif',
     'image/jpeg',
-    'image/pjpeg',
+    'image/jpg',
     'image/png',
     'image/tiff',
     'image/webp',

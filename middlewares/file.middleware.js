@@ -6,6 +6,7 @@ module.exports = {
     try {
       req.body = JSON.parse(req.body.data);
       // const poster = Object.values(req.files.poster);
+      console.log(req.body);
       fileService.checkImageFile(req.files.poster);
       req.poster = req.files.poster;
       next();
