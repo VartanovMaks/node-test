@@ -12,6 +12,8 @@ module.exports = {
   IMG_MAX_SIZE: 2 * 1024 * 1024, // 2MB
 
   POSTER: 'poster',
-  IMAGES: 'images',
-  ACTORS: 'actors',
+  IMAGES: 'img',
+  ACTORS: 'actors_img',
+  // IMAGES: 'images',
+  // ACTORS: 'actors',
 };

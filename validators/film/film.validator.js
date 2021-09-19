@@ -2,7 +2,8 @@ const Joi = require('joi');
 const { REGEX } = require('../../constants');
 
 const directorSchema = Joi.object().keys({
-  name: Joi.string().max(25).required(),
+  // name: Joi.string().max(25).required(),
+  name: Joi.string().max(25),
   photo: Joi.string().empty('').default('plug.jpg')
     .regex(REGEX.IMG_REGEX)
     .max(40),
@@ -10,7 +11,8 @@ const directorSchema = Joi.object().keys({
 });
 
 const actorSchema = Joi.object().keys({
-  name: Joi.string().max(25).required(),
+  name: Joi.string().max(25),
+  // name: Joi.string().max(25).required(),
   photo: Joi.string().empty('').default('plug.jpg')
     .regex(REGEX.IMG_REGEX)
     .max(40),

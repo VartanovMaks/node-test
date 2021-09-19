@@ -17,7 +17,7 @@ module.exports = {
   getFilmById: async (req, res, next) => {
     const id = req.params.filmID;
     try {
-      const film = await Film.findById(id);
+      const film = await Film.findById({ _id: id });
       if (!film) {
         throw new Error(`film with id:${id} not found`);
       }

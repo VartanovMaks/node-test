@@ -7,12 +7,11 @@ module.exports = {
     let arr = [];
     if (!(Array.isArray(imgFilesArr))) arr.push(imgFilesArr);
     else arr = imgFilesArr;
-    console.log(arr);
+    // console.log('checkImageFile', arr);
     arr.forEach((element) => {
       const { name, size, mimetype } = element;
 
       if (IMG_MIMETYPES.includes(mimetype)) {
-        console.log(name, mimetype);
         if (size > IMG_MAX_SIZE) {
           throw new Error(`File ${name} is too big`);
         }
