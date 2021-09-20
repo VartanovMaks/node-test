@@ -31,12 +31,12 @@ module.exports = {
   },
   checkImages: (req, res, next) => {
     // console.log('check Images', req.files.images);
-    const { img } = req.files;
+    const { images } = req.files;
     try {
-      fileService.checkImageFile(img);
-      req.img = [];
-      if (img.length > 1) req.img = img;
-      else req.img[0] = img;
+      fileService.checkImageFile(images);
+      req.images = [];
+      if (images.length > 1) req.images = images;
+      else req.images[0] = images;
       // console.log('checkImages = ', req.images.length, req.images);
       next();
     } catch (e) {
