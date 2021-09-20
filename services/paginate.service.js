@@ -7,13 +7,17 @@ module.exports = {
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const results = {};
+    const totalElements = await Film.countDocuments();
+    const totalPages = Math.ceil(totalElements / limit);
+    results.totalPages = totalPages;
     if (startIndex > 0) {
-      results.previousPage = { page: page - 1, limit };
+      results.previousPage = page - 1;
     }
-    if (endIndex < await Film.countDocuments()) {
-      results.nextPage = { page: page + 1, limit };
+    if (endIndex < await totalElements) {
+      results.nextPage = page + 1;
     }
 
+    console.log('totalElements', totalElements, 'totalPages', totalPages);
     try {
       results.result = await Film.find().limit(limit).skip(startIndex);
       res.paginatedResult = results;
