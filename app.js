@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 const staticPath = path.join(__dirname, 'data');
 app.use(express.static(staticPath));
 
+app.use(fileUpload({ createParentPath: true }));
 app.use('/films', router);
 
 app.listen(ENV_CONSTANT.PORT, () => {
