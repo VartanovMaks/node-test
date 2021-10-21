@@ -4,7 +4,8 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const router = require('./routes/film.router');
+const { filmRouter, userAuthRouter, userRouter } = require('./routes');
+
 const { ENV_CONSTANT } = require('./constants');
 
 const uri = ENV_CONSTANT.DB_CONNECTION_URL;
@@ -14,14 +15,18 @@ const app = express();
 _mongooseConnector();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json());// ?
 app.use(express.urlencoded({ extended: true }));
 
 const staticPath = path.join(__dirname, 'data');
 app.use(express.static(staticPath));
 
 app.use(fileUpload({ createParentPath: true }));
-app.use('/films', router);
+
+app.use('/films', filmRouter);
+app.use('/auth', userAuthRouter);
+app.use('/auth/users', userRouter);
+app.use(_handleErrors);
 
 app.listen(ENV_CONSTANT.PORT, () => {
   console.log(`App listen ${ENV_CONSTANT.PORT}`);
@@ -37,4 +42,13 @@ function _mongooseConnector() {
       console.log('MongoDb connected');
     })
     .catch((err) => console.log(err));
+}
+
+// eslint-disable-next-line no-unused-vars
+function _handleErrors(err, req, res, next) {
+  res.status(err.status || 500)
+    .json({
+      message: err.message || 'Unknown error',
+      customCode: err.code || 0,
+    });
 }
