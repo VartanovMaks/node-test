@@ -3,6 +3,7 @@ const path = require('path');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const { filmRouter, userAuthRouter, userRouter } = require('./routes');
 
@@ -15,7 +16,8 @@ const app = express();
 _mongooseConnector();
 
 app.use(cors());
-app.use(express.json());// ?
+app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 const staticPath = path.join(__dirname, 'data');

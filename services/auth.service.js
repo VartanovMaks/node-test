@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
+const { OAuth } = require('../dataBase');
 const {
   ENV_CONSTANT: {
     ACCESS_TOKEN_SECRET,
@@ -13,8 +14,8 @@ const {
 const verifyPromise = promisify(jwt.verify);
 
 module.exports = {
-  generateTokenPair: () => {
-    const accessToken = jwt.sign({}, ACCESS_TOKEN_SECRET, {
+  generateTokenPair: (DTO) => {
+    const accessToken = jwt.sign(DTO, ACCESS_TOKEN_SECRET, {
       expiresIn: ACCESS_TOKEN_EXP_TIME,
     });
     const refreshToken = jwt.sign({}, REFRESH_TOKEN_SECRET, {
@@ -22,6 +23,16 @@ module.exports = {
     });
 
     return { accessToken, refreshToken };
+  },
+
+  saveToken: async (userId, refreshToken) => {
+    const tokenData = await OAuth.findOne({ user: userId });
+    if (tokenData) {
+      tokenData.refreshToken = refreshToken;
+      return OAuth.save();
+    }
+    const token = await OAuth.create({ user: userId, refreshToken });
+    return token;
   },
 
   verifyToken: async (token, tokenType = TOKEN_TYPE.ACCESS) => {
