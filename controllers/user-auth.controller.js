@@ -1,39 +1,35 @@
 const { responseCodesEnum } = require('../constants');
 const { OAuth } = require('../dataBase');
-const { passwordHasher } = require('../services');
 const { authService } = require('../services');
 const { errorMessages } = require('../errors');
 
 module.exports = {
   userLogin: async (req, res, next) => {
     try {
-      console.log('REQ USER', req.user);
-      const { password: hashedPassword, _id } = req.user;
-      const { password } = req.body;
-      const DTO = { userId: req.user._id, role: req.user.role, email: req.user.email };
+      const { _id: userId, role, email } = req.user;
 
-      await passwordHasher.compare(hashedPassword, password);
+      const DTO = { userId, role, email };
 
       const tokenPair = authService.generateTokenPair({ ...DTO });
 
-      await OAuth.create({ ...tokenPair, user: _id });
+      res.cookie('refreshToken', tokenPair.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
 
-      res.json({
-        ...tokenPair,
-        // user: DTO
-      });
-    } catch (error) {
-      // res.json(error.message);
-      next(error);
+      await OAuth.create({ ...tokenPair, user: userId });
+
+      res.json(tokenPair.accessToken);
+    } catch (e) {
+      next(e);
     }
   },
 
   userLogout: async (req, res, next) => {
     try {
-      const token = req.get('Authorization');
+      const accessToken = req.get('Authorization');
 
-      await OAuth.deleteOne({ accessToken: token });
-      console.log('токены удалены');
+      await OAuth.deleteOne({ accessToken });
+
+      res.clearCookie('refreshToken');
+
       res.status(responseCodesEnum.DELETED_SUCCESSFULL)
         .json(errorMessages.SUCCESSFULLY_REMOVED.message);
     } catch (e) {
@@ -42,17 +38,24 @@ module.exports = {
   },
   userRefresh: async (req, res, next) => {
     try {
-      const token = req.get('Authorization');
+      const { refreshToken } = req.cookies;
 
-      await OAuth.deleteOne({ refreshToken: token });
+      console.log('HERE IN REFRESH', refreshToken);
+      await OAuth.deleteOne({ refreshToken });
 
-      const updatedTokens = authService.generateTokenPair();
+      res.clearCookie('refreshToken');
 
-      const { _id } = req.user;
+      const { _id: userId, role, email } = req.user;
 
-      await OAuth.create({ ...updatedTokens, user: _id });
+      const DTO = { userId, role, email };
 
-      res.json({ ...updatedTokens, user: req.user });
+      const updatedTokens = authService.generateTokenPair({ ...DTO });
+
+      res.cookie('refreshToken', updatedTokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+
+      await OAuth.create({ ...updatedTokens, user: userId });
+
+      res.json(updatedTokens.accessToken);
     } catch (e) {
       next(e);
     }

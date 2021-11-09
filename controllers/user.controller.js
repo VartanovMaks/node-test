@@ -1,16 +1,15 @@
-const { passwordHasher } = require('../services');
 const { responseCodesEnum } = require('../constants');
 const { User } = require('../dataBase');
+const { passwordHasher } = require('../services');
 
 module.exports = {
 
   getAllUsers: async (req, res, next) => {
     try {
-      console.log('get All Users');
       const users = await User.find({});
       res.status(responseCodesEnum.SUCCESS).json(users);
-    } catch (error) {
-      next(error);
+    } catch (e) {
+      next(e);
     }
   },
 
@@ -23,9 +22,9 @@ module.exports = {
       const createdUser = await User.create({ ...req.body, password: hashedPassword });
 
       res.status(responseCodesEnum.CREATED).json(createdUser);
-    } catch (error) {
-      console.log('USER_CONTR', error.name, error.code, error.message);
-      next(error);
+    } catch (e) {
+      console.log('USER_CONTR', e.name, e.code, e.message);
+      next(e);
     }
   },
 
@@ -34,8 +33,8 @@ module.exports = {
       const { userId } = req.params;
       await User.findByIdAndDelete(userId);
       res.status(responseCodesEnum.DELETED_SUCCESSFULL).json('deleted successfull');
-    } catch (error) {
-      next(error);
+    } catch (e) {
+      next(e);
     }
   },
 
@@ -44,8 +43,8 @@ module.exports = {
       const { user } = req;
       console.log('USERBYID', user);
       res.status(responseCodesEnum.SUCCESS).json(user);
-    } catch (error) {
-      next(error);
+    } catch (e) {
+      next(e);
     }
   },
 
@@ -56,8 +55,8 @@ module.exports = {
 
       await User.findByIdAndUpdate(userId, { email }, { new: true });
       res.status(responseCodesEnum.UPDATED_SUCCESSFULL).json('update successfull');
-    } catch (error) {
-      next(error);
+    } catch (e) {
+      next(e);
     }
   },
 };

@@ -1,10 +1,10 @@
 const { responseCodesEnum } = require('../constants');
+const { ENV_CONSTANT: { TOKEN_TYPE } } = require('../constants');
 const { OAuth, User } = require('../dataBase');
 const { ErrorHandler, errorMessages } = require('../errors');
 const { passwordHasher } = require('../services');
 const { authService } = require('../services');
 const { userLoginValidator } = require('../validators');
-const { ENV_CONSTANT: { TOKEN_TYPE } } = require('../constants');
 
 module.exports = {
 
@@ -20,8 +20,8 @@ module.exports = {
         );
       }
       next();
-    } catch (error) {
-      next(error);
+    } catch (e) {
+      next(e);
     }
   },
 
@@ -43,16 +43,16 @@ module.exports = {
       req.user = user;
 
       next();
-    } catch (error) {
-      next(error);
+    } catch (e) {
+      next(e);
     }
   },
 
   checkAccessToken: async (req, res, next) => {
     try {
-      const token = req.get('Authorization');
+      const accessToken = req.get('Authorization');
 
-      if (!token) {
+      if (!accessToken) {
         throw new ErrorHandler(
           responseCodesEnum.UNAUTHORIZED,
           errorMessages.NO_TOKEN.message,
@@ -60,9 +60,17 @@ module.exports = {
         );
       }
 
-      await authService.verifyToken(token);
+      const userData = await authService.verifyToken(accessToken);
+      if (!userData) {
+        throw new ErrorHandler(
+          responseCodesEnum.UNAUTHORIZED,
+          errorMessages.WRONG_TOKEN.message,
+          errorMessages.WRONG_TOKEN.code,
+        );
+      }
+      console.log('checkAccessToken-----', userData);
 
-      const tokenObject = await OAuth.findOne({ accessToken: token });
+      const tokenObject = await OAuth.findOne({ accessToken });
 
       if (!tokenObject) {
         throw new ErrorHandler(
@@ -81,9 +89,9 @@ module.exports = {
 
   checkRefreshToken: async (req, res, next) => {
     try {
-      const token = req.get('Authorization');
-
-      if (!token) {
+      const { refreshToken } = req.cookies;
+      console.log('checkRefreshToken', req.cookies);
+      if (!refreshToken) {
         throw new ErrorHandler(
           responseCodesEnum.UNAUTHORIZED,
           errorMessages.NO_TOKEN.message,
@@ -91,18 +99,20 @@ module.exports = {
         );
       }
 
-      await authService.verifyToken(token, TOKEN_TYPE.REFRESH);
+      await authService.verifyToken(refreshToken, TOKEN_TYPE.REFRESH);
 
-      const tokenObject = await OAuth.findOne({ refreshToken: token });
+      const userByToken = await OAuth.findOne({ refreshToken });
 
-      if (!tokenObject) {
+      if (!userByToken) {
         throw new ErrorHandler(
           responseCodesEnum.UNAUTHORIZED,
           errorMessages.WRONG_TOKEN.message,
           errorMessages.WRONG_TOKEN.code,
         );
       }
-      req.user = tokenObject.user;
+
+      console.log('MIDDLEQARE', userByToken);
+      req.user = userByToken.user;
 
       next();
     } catch (e) {

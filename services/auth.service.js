@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { promisify } = require('util');
+// const { promisify } = require('util');
 const { OAuth } = require('../dataBase');
 const {
   ENV_CONSTANT: {
@@ -11,7 +11,7 @@ const {
   },
 } = require('../constants');
 
-const verifyPromise = promisify(jwt.verify);
+// const verifyPromise = promisify(jwt.verify);
 
 module.exports = {
   generateTokenPair: (DTO) => {
@@ -38,7 +38,11 @@ module.exports = {
   verifyToken: async (token, tokenType = TOKEN_TYPE.ACCESS) => {
     const secretTokenWord = tokenType === TOKEN_TYPE.ACCESS
       ? ACCESS_TOKEN_SECRET : REFRESH_TOKEN_SECRET;
-
-    await verifyPromise(token, secretTokenWord);
+    try {
+      const userData = await jwt.verify(token, secretTokenWord);
+      return userData;
+    } catch (e) {
+      return null;
+    }
   },
 };

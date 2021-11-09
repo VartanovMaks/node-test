@@ -12,7 +12,7 @@ router.post('/logout',
   userAuthMiddleWare.checkAccessToken,
   userAuthController.userLogout);
 
-router.post('/refresh',
+router.get('/refresh',
   userAuthMiddleWare.checkRefreshToken,
   userAuthController.userRefresh);
 

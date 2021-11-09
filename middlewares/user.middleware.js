@@ -16,8 +16,8 @@ module.exports = {
         );
       }
       next();
-    } catch (error) {
-      next(error);
+    } catch (e) {
+      next(e);
     }
   },
 
@@ -33,8 +33,8 @@ module.exports = {
         );
       }
       next();
-    } catch (error) {
-      next(error);
+    } catch (e) {
+      next(e);
     }
   },
 
