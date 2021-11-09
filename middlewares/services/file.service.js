@@ -32,14 +32,17 @@ module.exports = {
       }
     });
 
-    let arr = [];
+    if (imgFilesArr !== undefined) {
+      let arr = [];
 
-    if (!(Array.isArray(imgFilesArr))) arr[0] = imgFilesArr;
-    else arr = imgFilesArr;
+      if (!(Array.isArray(imgFilesArr))) arr[0] = imgFilesArr;
+      else arr = imgFilesArr;
+      console.log('uploadImages', imgFilesArr);
 
-    arr.forEach(async (element) => {
-      const fullPath = path.join(imageDirectory, element.name);
-      await element.mv(fullPath);
-    });
+      arr.forEach(async (element) => {
+        const fullPath = path.join(imageDirectory, element.name);
+        await element.mv(fullPath);
+      });
+    }
   },
 };
