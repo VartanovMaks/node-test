@@ -68,7 +68,6 @@ module.exports = {
           errorMessages.WRONG_TOKEN.code,
         );
       }
-      console.log('checkAccessToken-----', userData);
 
       const tokenObject = await OAuth.findOne({ accessToken });
 
@@ -90,7 +89,6 @@ module.exports = {
   checkRefreshToken: async (req, res, next) => {
     try {
       const { refreshToken } = req.cookies;
-      console.log('checkRefreshToken', req.cookies);
       if (!refreshToken) {
         throw new ErrorHandler(
           responseCodesEnum.UNAUTHORIZED,
@@ -111,7 +109,6 @@ module.exports = {
         );
       }
 
-      console.log('MIDDLEQARE', userByToken);
       req.user = userByToken.user;
 
       next();
