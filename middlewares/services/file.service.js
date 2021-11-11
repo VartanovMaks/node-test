@@ -5,8 +5,8 @@ const { CONST: { IMG_MIMETYPES, IMG_MAX_SIZE } } = require('../../constants');
 module.exports = {
   checkImageFile: (imgFilesArr) => {
     let arr = [];
-    console.log('checkImageFile', imgFilesArr);
-    if (!(Array.isArray(imgFilesArr))) arr.push(imgFilesArr);
+    // console.log('checkImageFile', imgFilesArr);
+    if (!(Array.isArray(imgFilesArr))) arr[0] = imgFilesArr;
     else arr = imgFilesArr;
     // console.log('checkImageFile', arr);
     arr.forEach((element) => {

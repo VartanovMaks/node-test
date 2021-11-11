@@ -14,6 +14,7 @@ module.exports = {
   POSTER: 'poster',
   IMAGES: 'img',
   ACTORS: 'actors_img',
+  DIRECTOR: 'directors_img',
   // IMAGES: 'images',
   // ACTORS: 'actors',
 };

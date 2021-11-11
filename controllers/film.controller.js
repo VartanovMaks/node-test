@@ -1,6 +1,10 @@
 const { Film } = require('../dataBase/index');
 const { paginateService } = require('../services');
-const { CONST: { POSTER, ACTORS, IMAGES } } = require('../constants');
+const {
+  CONST: {
+    POSTER, ACTORS, IMAGES, DIRECTOR,
+  },
+} = require('../constants');
 const { fileService } = require('../middlewares/services');
 
 module.exports = {
@@ -35,7 +39,7 @@ module.exports = {
   },
   createFilm: async (req, res, next) => {
     const {
-      actors, images, poster,
+      actors, images, poster, director,
       body: filmData,
     } = req;
 
@@ -49,6 +53,7 @@ module.exports = {
 
       fileService.uploadImages(images, IMAGES, _id);
       fileService.uploadImages(actors, ACTORS, _id);
+      fileService.uploadImages(director, DIRECTOR, _id);
       fileService.uploadImages(poster, POSTER, _id);
 
       res.json(createdFilm);
