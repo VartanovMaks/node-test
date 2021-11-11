@@ -19,7 +19,8 @@ module.exports = {
   checkActorsPhoto: (req, res, next) => {
     try {
       if (req.files && req.files.actors) {
-        const actors = Object.values(req.files.actors);
+        // const actors = Object.values(req.files.actors);
+        const { actors } = req.files;
         console.log('checking actors files image', actors);
         if (actors) {
           fileService.checkImageFile(actors);
@@ -37,7 +38,8 @@ module.exports = {
     try {
       if (req.files && req.files.director) {
         console.log('checkDirectorsPhoto', req.files.director);
-        const director = Object.values(req.files.director);
+        // const director = Object.values(req.files.director);
+        const { director } = req.files;
         console.log('checking directors files image', director);
         if (director) {
           fileService.checkImageFile(director);
