@@ -1,15 +1,20 @@
 const router = require('express').Router();
 const { userController } = require('../controllers');
-const { userMiddleWare } = require('../middlewares');
+const { userMiddleWare, userAuthMiddleWare } = require('../middlewares');
 
-router.get('/', userController.getAllUsers);
+router.get('/',
+  userAuthMiddleWare.checkAccessToken,
+  userController.getAllUsers);
 
 router.post('/',
   userMiddleWare.checkUserValidity,
   userMiddleWare.checkIsEmailExist,
   userController.registerUser);
 
-router.delete('/:userId', userMiddleWare.checkIsUserExist, userController.deleteUserById);
+router.delete('/:userId',
+  userAuthMiddleWare.checkAccessToken,
+  userMiddleWare.checkIsUserExist,
+  userController.deleteUserById);
 
 router.put('/:userId',
   userMiddleWare.checkUserValidity,

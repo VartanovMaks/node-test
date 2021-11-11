@@ -40,7 +40,6 @@ module.exports = {
     try {
       const { refreshToken } = req.cookies;
 
-      console.log('HERE IN REFRESH', refreshToken);
       await OAuth.deleteOne({ refreshToken });
 
       res.clearCookie('refreshToken');

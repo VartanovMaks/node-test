@@ -17,7 +17,6 @@ module.exports = {
       results.nextPage = page + 1;
     }
 
-    // console.log('totalElements', totalElements, 'totalPages', totalPages);
     try {
       results.result = await Film.find().limit(limit).skip(startIndex);
       res.paginatedResult = results;

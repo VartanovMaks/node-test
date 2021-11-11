@@ -23,7 +23,6 @@ module.exports = {
 
       res.status(responseCodesEnum.CREATED).json(createdUser);
     } catch (e) {
-      console.log('USER_CONTR', e.name, e.code, e.message);
       next(e);
     }
   },
@@ -41,7 +40,6 @@ module.exports = {
   getUserById: (req, res, next) => {
     try {
       const { user } = req;
-      console.log('USERBYID', user);
       res.status(responseCodesEnum.SUCCESS).json(user);
     } catch (e) {
       next(e);
