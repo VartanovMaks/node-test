@@ -5,6 +5,10 @@ const { filmMiddleware, fileMiddleware } = require('../middlewares');
 
 router.get('/', filmController.getAllFilms);
 router.get('/:filmID', filmController.getFilmById);
+
+router.post('/:filmID',
+  filmController.editFilmById);
+
 router.post('/',
   fileMiddleware.checkPoster,
   fileMiddleware.checkActorsPhoto,
@@ -12,6 +16,7 @@ router.post('/',
   fileMiddleware.checkImages,
   filmMiddleware.checkFilmValidity,
   filmController.createFilm);
+
 router.post('/file-upload/:filmID',
   filmController.uploadFilmFilesById);
 

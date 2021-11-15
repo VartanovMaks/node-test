@@ -1,4 +1,4 @@
-const { fileService } = require('./services');
+const { fileService } = require('../services/file.services');
 
 module.exports = {
 
@@ -7,7 +7,7 @@ module.exports = {
       req.body = JSON.parse(req.body.data);
 
       if (req.files && req.files.poster) {
-        console.log('checking poster file image', req.files.poster.name);
+        // console.log('checking poster file image', req.files.poster.name);
         fileService.checkImageFile(req.files.poster);
         req.poster = req.files.poster;
       }
@@ -21,7 +21,7 @@ module.exports = {
       if (req.files && req.files.actors) {
         // const actors = Object.values(req.files.actors);
         const { actors } = req.files;
-        console.log('checking actors files image', actors);
+        // console.log('checking actors files image', actors);
         if (actors) {
           fileService.checkImageFile(actors);
           req.actors = [];
@@ -40,7 +40,7 @@ module.exports = {
         console.log('checkDirectorsPhoto', req.files.director);
         // const director = Object.values(req.files.director);
         const { director } = req.files;
-        console.log('checking directors files image', director);
+        // console.log('checking directors files image', director);
         if (director) {
           fileService.checkImageFile(director);
           req.director = [];
@@ -58,7 +58,7 @@ module.exports = {
       if (req.files && req.files.images) {
         const { images } = req.files;
         if (images) {
-          console.log('checking images files ', images);
+          // console.log('checking images files ', images);
           fileService.checkImageFile(images);
           req.images = [];
           if (images.length > 1) req.images = images;

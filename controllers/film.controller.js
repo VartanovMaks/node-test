@@ -5,7 +5,7 @@ const {
     POSTER, ACTORS, IMAGES, DIRECTOR,
   },
 } = require('../constants');
-const { fileService } = require('../middlewares/services');
+const { fileService } = require('../services/file.services');
 
 module.exports = {
 
@@ -61,6 +61,61 @@ module.exports = {
       next(e);
     }
   },
+
+  editFilmById: async (req, res, next) => {
+    const id = req.params.filmID;
+    const {
+      // eslint-disable-next-line camelcase
+      delete_actors, delete_director, delete_poster, delete_images,
+    } = req.body;
+
+    let actors = [];
+    let images = [];
+    let poster = [];
+    let director = [];
+    if (req.files) {
+      actors = req.files.actors;
+      images = req.files.images;
+      poster = req.files.poster;
+      director = req.files.director;
+    }
+    // get & store film's previous  version
+    try {
+      const filmBeforeUpdate = await Film.findById(id);
+      if (!filmBeforeUpdate) {
+        throw new Error(`film with id:${id} not found in base`);
+      }
+    } catch (e) {
+      next(e);
+    }
+    // get film's new version
+    const film = JSON.parse(req.body.data);
+    let filmUpdated;
+    // try to edit film in base
+    try {
+      filmUpdated = await Film.findOneAndUpdate({ _id: id }, film, { new: true });
+      if (!film) {
+        throw new Error(`film with id:${id} was not updated`);
+      }
+    } catch (e) {
+      next(e);
+    }
+
+    // if new film data uploaded, delete unnessesary old files
+    fileService.deleteImages(delete_actors, ACTORS, id);
+    fileService.deleteImages(delete_images, IMAGES, id);
+    fileService.deleteImages(delete_director, DIRECTOR, id);
+    fileService.deleteImages(delete_poster, POSTER, id);
+
+    // send new photo/images files to server
+    fileService.uploadImages(images, IMAGES, id);
+    fileService.uploadImages(actors, ACTORS, id);
+    fileService.uploadImages(director, DIRECTOR, id);
+    fileService.uploadImages(poster, POSTER, id);
+
+    res.json(filmUpdated);
+  },
+
   uploadFilmFilesById: async (req, res, next) => {
     const id = req.params.filmID;
     try {
