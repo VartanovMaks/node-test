@@ -26,15 +26,6 @@ module.exports = {
     const pathWithinBase = path.join(id.toString(), imgCategory);
     const imageDirectory = path.join(process.cwd(), 'data', pathWithinBase);
 
-    // // eslint-disable-next-line no-bitwise
-    // fs.access(imageDirectory, fs.constants.R_OK | fs.constants.W_OK, (error) => {
-    //   if (!error) {
-    //     console.log('Directory ', imageDirectory, ' doesn\'t exists.');
-    //   } else {
-    //     console.log('Directory ', imageDirectory, ' can be edited');
-    //   }
-    // });
-
     if (imgFilesArr !== undefined) {
       let arr = [];
 
@@ -52,7 +43,21 @@ module.exports = {
               console.log('uploadImages', error.message);
             }
           } else {
-            console.error('uploadImages. file ', element.name, 'already exists in base');
+            console.error('uploadImages. file ', element.name, 'already exists in base and will be deleted.');
+            // previous file must be deleted
+            fs.unlink(fullPath, async (error) => {
+              if (error) {
+                console.log('deleteImages', error.message);
+              } else {
+                console.log('file', element.name, 'was successfully deleted');
+                // new file uploading
+                try {
+                  await element.mv(fullPath);
+                } catch (er) {
+                  console.log('uploadImages', er.message);
+                }
+              }
+            });
           }
         });
       });
@@ -74,5 +79,14 @@ module.exports = {
         });
       });
     }
+  },
+
+  deleteFilmDirectory: async (filmId) => {
+    const filmDirectory = path.join(process.cwd(), 'data', filmId);
+    fs.rmdir(filmDirectory, { recursive: true }, (error) => {
+      if (error) {
+        console.log(`Directory ${filmDirectory} cann't be deleted`, error.message);
+      } else { console.log(`Directory ${filmDirectory} was successfully deleted`); }
+    });
   },
 };

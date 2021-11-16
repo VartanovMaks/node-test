@@ -17,7 +17,7 @@ router.post('/',
   filmMiddleware.checkFilmValidity,
   filmController.createFilm);
 
-router.post('/file-upload/:filmID',
-  filmController.uploadFilmFilesById);
+router.delete('/:filmID',
+  filmController.deleteFilmById);
 
 module.exports = router;

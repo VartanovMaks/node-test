@@ -74,11 +74,16 @@ module.exports = {
     let poster = [];
     let director = [];
     if (req.files) {
-      actors = req.files.actors;
-      images = req.files.images;
-      poster = req.files.poster;
-      director = req.files.director;
+      ({
+        actors, images, poster, director,
+      } = req.files);
     }
+    // if (req.files) {
+    //   actors = req.files.actors;
+    //   images = req.files.images;
+    //   poster = req.files.poster;
+    //   director = req.files.director;
+    // }
     // get & store film's previous  version
     try {
       const filmBeforeUpdate = await Film.findById(id);
@@ -116,16 +121,18 @@ module.exports = {
     res.json(filmUpdated);
   },
 
-  uploadFilmFilesById: async (req, res, next) => {
+  deleteFilmById: async (req, res, next) => {
     const id = req.params.filmID;
     try {
-      const film = await Film.findById(id);
-      if (!film) {
-        throw new Error(`film with id:${id} not found`);
+      const filmDeleted = await Film.findByIdAndDelete(id);
+      if (!filmDeleted) {
+        throw new Error(`film with id:${id} not found in base`);
       }
-      res.json(film);
+      fileService.deleteFilmDirectory(id);
+      res.json(filmDeleted);
     } catch (e) {
       next(e);
     }
   },
+
 };
