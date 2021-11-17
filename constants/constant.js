@@ -15,6 +15,7 @@ module.exports = {
   IMAGES: 'img',
   ACTORS: 'actors_img',
   DIRECTOR: 'directors_img',
+  STATIC_DIR: 'data',
   // IMAGES: 'images',
   // ACTORS: 'actors',
 };

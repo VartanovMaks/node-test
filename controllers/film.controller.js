@@ -65,25 +65,20 @@ module.exports = {
   editFilmById: async (req, res, next) => {
     const id = req.params.filmID;
     const {
-      // eslint-disable-next-line camelcase
-      delete_actors, delete_director, delete_poster, delete_images,
+      deleteActors, deleteDirector, deletePoster, deleteImages,
     } = req.body;
 
     let actors = [];
     let images = [];
     let poster = [];
     let director = [];
+
     if (req.files) {
       ({
         actors, images, poster, director,
       } = req.files);
     }
-    // if (req.files) {
-    //   actors = req.files.actors;
-    //   images = req.files.images;
-    //   poster = req.files.poster;
-    //   director = req.files.director;
-    // }
+
     // get & store film's previous  version
     try {
       const filmBeforeUpdate = await Film.findById(id);
@@ -106,13 +101,13 @@ module.exports = {
       next(e);
     }
 
-    // if new film data uploaded, delete unnessesary old files
-    fileService.deleteImages(delete_actors, ACTORS, id);
-    fileService.deleteImages(delete_images, IMAGES, id);
-    fileService.deleteImages(delete_director, DIRECTOR, id);
-    fileService.deleteImages(delete_poster, POSTER, id);
+    // if new film data uploaded, delete unnessesary old files. delete_actors Type - string
+    fileService.deleteImages(deleteActors, ACTORS, id);
+    fileService.deleteImages(deleteImages, IMAGES, id);
+    fileService.deleteImages(deleteDirector, DIRECTOR, id);
+    fileService.deleteImages(deletePoster, POSTER, id);
 
-    // send new photo/images files to server
+    // send new photo/images files to server. actors Type - files
     fileService.uploadImages(images, IMAGES, id);
     fileService.uploadImages(actors, ACTORS, id);
     fileService.uploadImages(director, DIRECTOR, id);

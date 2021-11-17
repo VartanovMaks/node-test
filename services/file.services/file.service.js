@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { CONST: { IMG_MIMETYPES, IMG_MAX_SIZE } } = require('../../constants');
+const { CONST: { IMG_MIMETYPES, IMG_MAX_SIZE, STATIC_DIR } } = require('../../constants');
 
 module.exports = {
   checkImageFile: (imgFilesArr) => {
@@ -24,7 +24,7 @@ module.exports = {
 
   uploadImages: async (imgFilesArr, imgCategory, id) => {
     const pathWithinBase = path.join(id.toString(), imgCategory);
-    const imageDirectory = path.join(process.cwd(), 'data', pathWithinBase);
+    const imageDirectory = path.join(process.cwd(), STATIC_DIR, pathWithinBase);
 
     if (imgFilesArr !== undefined) {
       let arr = [];
@@ -65,7 +65,7 @@ module.exports = {
   },
   deleteImages: async (imgFilesArr, imgCategory, id) => {
     const pathWithinBase = path.join(id.toString(), imgCategory);
-    const imageDirectory = path.join(process.cwd(), 'data', pathWithinBase);
+    const imageDirectory = path.join(process.cwd(), STATIC_DIR, pathWithinBase);
     if (imgFilesArr !== undefined) {
       let arr = [];
       if (!(Array.isArray(imgFilesArr))) arr[0] = imgFilesArr;
@@ -82,7 +82,7 @@ module.exports = {
   },
 
   deleteFilmDirectory: async (filmId) => {
-    const filmDirectory = path.join(process.cwd(), 'data', filmId);
+    const filmDirectory = path.join(process.cwd(), STATIC_DIR, filmId);
     fs.rmdir(filmDirectory, { recursive: true }, (error) => {
       if (error) {
         console.log(`Directory ${filmDirectory} cann't be deleted`, error.message);
