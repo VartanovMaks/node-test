@@ -23,8 +23,8 @@ router.put('/:userId',
   userController.updateUserById);
 
 router.get('/:userId',
+  userAuthMiddleWare.checkAccessToken,
   userMiddleWare.checkIsUserExist,
-  userMiddleWare.checkUsersRole,
   userController.getUserById);
 
 module.exports = router;

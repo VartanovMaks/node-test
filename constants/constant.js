@@ -15,6 +15,4 @@ module.exports = {
   IMAGES: 'img',
   ACTORS: 'actors_img',
   DIRECTOR: 'directors_img',
-  // IMAGES: 'images',
-  // ACTORS: 'actors',
 };
