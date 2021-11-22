@@ -14,6 +14,7 @@ router.post('/',
 router.delete('/:userId',
   userAuthMiddleWare.checkAccessToken,
   userMiddleWare.checkIsUserExist,
+  userMiddleWare.checkUsersRole,
   userController.deleteUserById);
 
 router.put('/:userId',
@@ -21,6 +22,9 @@ router.put('/:userId',
   userMiddleWare.checkIsUserExist,
   userController.updateUserById);
 
-router.get('/:userId', userMiddleWare.checkIsUserExist, userController.getUserById);
+router.get('/:userId',
+  userMiddleWare.checkIsUserExist,
+  userMiddleWare.checkUsersRole,
+  userController.getUserById);
 
 module.exports = router;
