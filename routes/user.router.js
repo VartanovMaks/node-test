@@ -14,13 +14,18 @@ router.post('/',
 router.delete('/:userId',
   userAuthMiddleWare.checkAccessToken,
   userMiddleWare.checkIsUserExist,
+  userMiddleWare.checkUsersRole,
   userController.deleteUserById);
 
 router.put('/:userId',
-  userMiddleWare.checkUserValidity,
+  userAuthMiddleWare.checkAccessToken,
   userMiddleWare.checkIsUserExist,
+  userMiddleWare.checkUsersRole,
   userController.updateUserById);
 
-router.get('/:userId', userMiddleWare.checkIsUserExist, userController.getUserById);
+router.get('/:userId',
+  userAuthMiddleWare.checkAccessToken,
+  userMiddleWare.checkIsUserExist,
+  userController.getUserById);
 
 module.exports = router;

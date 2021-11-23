@@ -32,5 +32,9 @@ module.exports = {
     message: 'User not found',
     code: 4040,
   },
+  HUCKING_ATTEMTP: {
+    message: 'Hucking attempt!!!',
+    code: 4041,
+  },
 
 };

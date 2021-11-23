@@ -21,6 +21,8 @@ module.exports = {
 
       const createdUser = await User.create({ ...req.body, password: hashedPassword });
 
+      console.log('CREATED USER', createdUser);
+
       res.status(responseCodesEnum.CREATED).json(createdUser);
     } catch (e) {
       next(e);
@@ -49,9 +51,9 @@ module.exports = {
   updateUserById: async (req, res, next) => {
     try {
       const { userId } = req.params;
-      const { email } = req.body;
-
-      await User.findByIdAndUpdate(userId, { email }, { new: true });
+      const { role } = req.body;
+      console.log('ROLE', req.body);
+      await User.findByIdAndUpdate(userId, { role }, { new: true });
       res.status(responseCodesEnum.UPDATED_SUCCESSFULL).json('update successfull');
     } catch (e) {
       next(e);

@@ -58,4 +58,26 @@ module.exports = {
       next(error);
     }
   },
+
+  checkUsersRole: async (req, res, next) => {
+    try {
+      const { userId } = req.params;
+
+      console.log('USERID', userId);
+
+      const userById = await User.findById(userId);
+
+      if (userById.role !== 'admin') {
+        throw new ErrorHandler(
+          responseCodesEnum.BAD_REQUEST,
+          errorMessages.HUCKING_ATTEMTP.message,
+          errorMessages.HUCKING_ATTEMTP.code,
+        );
+      }
+
+      next();
+    } catch (error) {
+      next(error);
+    }
+  },
 };
