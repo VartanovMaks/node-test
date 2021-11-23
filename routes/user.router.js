@@ -18,8 +18,9 @@ router.delete('/:userId',
   userController.deleteUserById);
 
 router.put('/:userId',
-  userMiddleWare.checkUserValidity,
+  userAuthMiddleWare.checkAccessToken,
   userMiddleWare.checkIsUserExist,
+  userMiddleWare.checkUsersRole,
   userController.updateUserById);
 
 router.get('/:userId',
