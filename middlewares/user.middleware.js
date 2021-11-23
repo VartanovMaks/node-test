@@ -41,7 +41,6 @@ module.exports = {
   checkIsUserExist: async (req, res, next) => {
     try {
       const { userId } = req.params;
-
       const userById = await User.findById(userId);
 
       if (!userById) {
@@ -59,15 +58,11 @@ module.exports = {
     }
   },
 
-  checkUsersRole: async (req, res, next) => {
+  checkIsUsersAdmin: async (req, res, next) => {
     try {
-      const { userId } = req.params;
+      const { role } = req;
 
-      console.log('USERID', userId);
-
-      const userById = await User.findById(userId);
-
-      if (userById.role !== 'admin') {
+      if (role !== 'admin') {
         throw new ErrorHandler(
           responseCodesEnum.BAD_REQUEST,
           errorMessages.HUCKING_ATTEMTP.message,

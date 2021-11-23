@@ -38,10 +38,8 @@ module.exports = {
           errorMessages.WRONG_EMAIL_OR_PASSWORD.code,
         );
       }
-
       await passwordHasher.compare(user.password, password);
       req.user = user;
-
       next();
     } catch (e) {
       next(e);
@@ -59,8 +57,8 @@ module.exports = {
           errorMessages.NO_TOKEN.code,
         );
       }
-
       const userData = await authService.verifyToken(accessToken);
+
       if (!userData) {
         throw new ErrorHandler(
           responseCodesEnum.UNAUTHORIZED,
@@ -68,7 +66,6 @@ module.exports = {
           errorMessages.WRONG_TOKEN.code,
         );
       }
-
       const tokenObject = await OAuth.findOne({ accessToken });
 
       if (!tokenObject) {
@@ -79,6 +76,7 @@ module.exports = {
         );
       }
       req.user = tokenObject.user;
+      req.role = userData.role;
 
       next();
     } catch (e) {
