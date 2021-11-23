@@ -14,13 +14,13 @@ router.post('/',
 router.delete('/:userId',
   userAuthMiddleWare.checkAccessToken,
   userMiddleWare.checkIsUserExist,
-  userMiddleWare.checkUsersRole,
+  userMiddleWare.checkIsUsersAdmin,
   userController.deleteUserById);
 
 router.put('/:userId',
   userAuthMiddleWare.checkAccessToken,
   userMiddleWare.checkIsUserExist,
-  userMiddleWare.checkUsersRole,
+  userMiddleWare.checkIsUsersAdmin,
   userController.updateUserById);
 
 router.get('/:userId',

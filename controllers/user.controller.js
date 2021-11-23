@@ -52,7 +52,7 @@ module.exports = {
     try {
       const { userId } = req.params;
       const { role } = req.body;
-      console.log('ROLE', req.body);
+
       await User.findByIdAndUpdate(userId, { role }, { new: true });
       res.status(responseCodesEnum.UPDATED_SUCCESSFULL).json('update successfull');
     } catch (e) {
