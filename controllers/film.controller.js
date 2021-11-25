@@ -40,7 +40,7 @@ module.exports = {
   createFilm: async (req, res, next) => {
     const {
       actors, images, poster, director,
-      body: filmData,
+      filmData,
     } = req;
 
     try {
@@ -88,30 +88,29 @@ module.exports = {
     } catch (e) {
       next(e);
     }
-    // get film's new version
-    const film = JSON.parse(req.body.data);
+
     let filmUpdated;
     // try to edit film in base
     try {
-      filmUpdated = await Film.findOneAndUpdate({ _id: id }, film, { new: true });
-      if (!film) {
+      filmUpdated = await Film.findOneAndUpdate({ _id: id }, req.filmData, { new: true });
+      if (!filmUpdated) {
         throw new Error(`film with id:${id} was not updated`);
       }
     } catch (e) {
       next(e);
     }
 
-    // if new film data uploaded, delete unnessesary old files. delete_actors Type - string
-    fileService.deleteImages(deleteActors, ACTORS, id);
-    fileService.deleteImages(deleteImages, IMAGES, id);
-    fileService.deleteImages(deleteDirector, DIRECTOR, id);
-    fileService.deleteImages(deletePoster, POSTER, id);
+    // if new film data uploaded, delete unnessesary old files. deleteAtors Type - string
+    await fileService.deleteImages(deleteActors, ACTORS, id);
+    await fileService.deleteImages(deleteImages, IMAGES, id);
+    await fileService.deleteImages(deleteDirector, DIRECTOR, id);
+    await fileService.deleteImages(deletePoster, POSTER, id);
 
     // send new photo/images files to server. actors Type - files
-    fileService.uploadImages(images, IMAGES, id);
-    fileService.uploadImages(actors, ACTORS, id);
-    fileService.uploadImages(director, DIRECTOR, id);
-    fileService.uploadImages(poster, POSTER, id);
+    await fileService.uploadImages(images, IMAGES, id);
+    await fileService.uploadImages(actors, ACTORS, id);
+    await fileService.uploadImages(director, DIRECTOR, id);
+    await fileService.uploadImages(poster, POSTER, id);
 
     res.json(filmUpdated);
   },

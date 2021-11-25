@@ -66,6 +66,7 @@ module.exports = {
   deleteImages: async (imgFilesArr, imgCategory, id) => {
     const pathWithinBase = path.join(id.toString(), imgCategory);
     const imageDirectory = path.join(process.cwd(), STATIC_DIR, pathWithinBase);
+    console.log('deleteImages', imgCategory, '\n', imgFilesArr);
     if (imgFilesArr !== undefined) {
       let arr = [];
       if (!(Array.isArray(imgFilesArr))) arr[0] = imgFilesArr;
