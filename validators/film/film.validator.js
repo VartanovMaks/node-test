@@ -22,6 +22,7 @@ const actorSchema = Joi.object().keys({
 
 module.exports = {
   createFilm: Joi.object().keys({
+    _id: Joi.string(),
     name: Joi.string().max(25).required(),
     year: Joi.number().min(1970).max(new Date().getFullYear()),
     country: Joi.string().max(20).default('США'),

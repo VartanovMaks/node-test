@@ -7,6 +7,11 @@ router.get('/', filmController.getAllFilms);
 router.get('/:filmID', filmController.getFilmById);
 
 router.post('/:filmID',
+  fileMiddleware.checkPoster,
+  fileMiddleware.checkActorsPhoto,
+  fileMiddleware.checkDirectorsPhoto,
+  fileMiddleware.checkImages,
+  filmMiddleware.checkFilmValidity,
   filmController.editFilmById);
 
 router.post('/',

@@ -4,8 +4,8 @@ module.exports = {
 
   checkPoster: (req, res, next) => {
     try {
-      req.body = JSON.parse(req.body.data);
-
+      req.filmData = JSON.parse(req.body.data);
+      // console.log('checkPoster', req.body);
       if (req.files && req.files.poster) {
         // console.log('checking poster file image', req.files.poster.name);
         fileService.checkImageFile(req.files.poster);
@@ -37,7 +37,7 @@ module.exports = {
   checkDirectorsPhoto: (req, res, next) => {
     try {
       if (req.files && req.files.director) {
-        console.log('checkDirectorsPhoto', req.files.director);
+        // console.log('checkDirectorsPhoto', req.files.director);
         // const director = Object.values(req.files.director);
         const { director } = req.files;
         // console.log('checking directors files image', director);
