@@ -32,5 +32,7 @@ module.exports = {
     poster: Joi.string().max(30).regex(REGEX.IMG_REGEX),
     images: Joi.array().items(Joi.string().regex(REGEX.IMG_REGEX).max(40)),
     trailer: Joi.string().max(100),
+    rating: Joi.number(),
+    viewsNumber: Joi.number(),
   }),
 };
