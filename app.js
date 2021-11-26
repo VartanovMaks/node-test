@@ -5,7 +5,12 @@ const cors = require('cors');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const { filmRouter, userAuthRouter, userRouter } = require('./routes');
+const {
+  filmRouter,
+  userAuthRouter,
+  userRouter,
+  userSearchRouter,
+} = require('./routes');
 
 const { ENV_CONSTANT } = require('./constants');
 
@@ -31,6 +36,7 @@ app.use(fileUpload({ createParentPath: true }));
 app.use('/films', filmRouter);
 app.use('/auth', userAuthRouter);
 app.use('/auth/users', userRouter);
+app.use('/users/search', userSearchRouter);
 app.use(_handleErrors);
 
 app.listen(ENV_CONSTANT.PORT, () => {
