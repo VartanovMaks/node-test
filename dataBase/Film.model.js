@@ -34,6 +34,12 @@ const filmSchema = new Schema({
   poster: String,
   images: [String],
   trailer: String,
+  rating: {
+    type: Number,
+  },
+  viewsNumber: {
+    type: Number,
+  },
 }, { timestamps: true });
 
 module.exports = model('Film', filmSchema);
