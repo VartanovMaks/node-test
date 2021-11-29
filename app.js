@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const {
   filmRouter,
+  watchingRouter,
   userAuthRouter,
   userRouter,
   userSearchRouter,
@@ -34,6 +35,7 @@ app.use(express.static(staticPath));
 app.use(fileUpload({ createParentPath: true }));
 
 app.use('/films', filmRouter);
+app.use('/watching', watchingRouter);
 app.use('/auth', userAuthRouter);
 app.use('/auth/users', userRouter);
 app.use('/users/search', userSearchRouter);
