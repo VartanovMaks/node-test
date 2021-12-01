@@ -11,6 +11,7 @@ const {
   userAuthRouter,
   userRouter,
   userSearchRouter,
+  ratingRouter,
 } = require('./routes');
 
 const { ENV_CONSTANT } = require('./constants');
@@ -36,6 +37,7 @@ app.use(fileUpload({ createParentPath: true }));
 
 app.use('/films', filmRouter);
 app.use('/watching', watchingRouter);
+app.use('/rating', ratingRouter);
 app.use('/auth', userAuthRouter);
 app.use('/auth/users', userRouter);
 app.use('/users/search', userSearchRouter);
