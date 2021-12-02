@@ -4,9 +4,9 @@ const { Watching } = require('../dataBase');
 module.exports = {
 
   createWatching: async (req, res, next) => {
-    const { userId, filmId } = req.body;
-
     try {
+      const { userId, filmId } = req.body;
+      console.log('createWatching', userId, filmId);
       const view = await Watching.create({ filmId, userId });
       res.status(responseCodesEnum.SUCCESS).json(view);
     } catch (e) {
