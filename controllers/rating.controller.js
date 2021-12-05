@@ -17,10 +17,9 @@ module.exports = {
         },
       );
 
-      res.status(responseCodesEnum.SUCCESS);
+      res.status(responseCodesEnum.SUCCESS).json('ok');
     } catch (err) {
       next(err);
     }
   },
-
 };

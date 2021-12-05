@@ -1,4 +1,5 @@
-const { Film } = require('../dataBase/index');
+const { Film } = require('../dataBase');
+const { Rating } = require('../dataBase');
 const { paginateService } = require('../services');
 const {
   CONST: {
@@ -24,14 +25,25 @@ module.exports = {
   },
 
   getFilmById: async (req, res, next) => {
-    const id = req.params.filmID;
     try {
-      const film = await Film.findById({ _id: id }, {
+      const { filmId } = req.params;
+      console.log('filmId', filmId);
+      const result = await Rating.find({ filmId });
+
+      const aveRating = result.map((item) => item.rating)
+        .reduce((el, cur) => (el + cur)) / result.length;
+
+      console.log('aveRate', aveRating);
+
+      await Film.findOneAndUpdate({ _id: filmId }, { rating: aveRating });
+
+      const film = await Film.findById({ _id: filmId }, {
         createdAt: 0, updatedAt: 0, __v: 0,
       });
       if (!film) {
-        throw new Error(`film with id:${id} not found`);
+        throw new Error(`film with id:${filmId} not found`);
       }
+
       res.json(film);
     } catch (e) {
       next(e);
@@ -63,7 +75,7 @@ module.exports = {
   },
 
   editFilmById: async (req, res, next) => {
-    const id = req.params.filmID;
+    const id = req.params.filmId;
     const {
       deleteActors, deleteDirector, deletePoster, deleteImages,
     } = req.body;
@@ -116,7 +128,7 @@ module.exports = {
   },
 
   deleteFilmById: async (req, res, next) => {
-    const id = req.params.filmID;
+    const id = req.params.filmId;
     try {
       const filmDeleted = await Film.findByIdAndDelete(id);
       if (!filmDeleted) {

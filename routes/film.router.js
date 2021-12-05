@@ -3,10 +3,13 @@ const router = require('express').Router();
 const filmController = require('../controllers/film.controller');
 const { filmMiddleware, fileMiddleware } = require('../middlewares');
 
-router.get('/', filmController.getAllFilms);
-router.get('/:filmID', filmController.getFilmById);
+router.get('/',
+  filmController.getAllFilms);
 
-router.post('/:filmID',
+router.get('/:filmId',
+  filmController.getFilmById);
+
+router.post('/:filmId',
   fileMiddleware.checkPoster,
   fileMiddleware.checkActorsPhoto,
   fileMiddleware.checkDirectorsPhoto,
@@ -22,7 +25,7 @@ router.post('/',
   filmMiddleware.checkFilmValidity,
   filmController.createFilm);
 
-router.delete('/:filmID',
+router.delete('/:filmId',
   filmController.deleteFilmById);
 
 module.exports = router;
