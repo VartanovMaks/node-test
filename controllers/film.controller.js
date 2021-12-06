@@ -30,8 +30,8 @@ module.exports = {
       console.log('filmId', filmId);
       const result = await Rating.find({ filmId });
 
-      const aveRating = result.map((item) => item.rating)
-        .reduce((el, cur) => (el + cur)) / result.length;
+      const aveRating = Math.round((result.map((item) => item.rating)
+        .reduce((el, cur) => (el + cur)) / result.length) * 10) / 10;
 
       console.log('aveRate', aveRating);
 
