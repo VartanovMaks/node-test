@@ -30,12 +30,12 @@ module.exports = {
       console.log('filmId', filmId);
       const result = await Rating.find({ filmId });
 
-      const aveRating = Math.round((result.map((item) => item.rating)
-        .reduce((el, cur) => (el + cur)) / result.length) * 10) / 10;
+      if (result.length !== 0) {
+        const aveRating = Math.round((result.map((item) => item.rating)
+          .reduce((el, cur) => (el + cur)) / result.length) * 10) / 10;
 
-      console.log('aveRate', aveRating);
-
-      await Film.findOneAndUpdate({ _id: filmId }, { rating: aveRating });
+        await Film.findOneAndUpdate({ _id: filmId }, { rating: aveRating });
+      }
 
       const film = await Film.findById({ _id: filmId }, {
         createdAt: 0, updatedAt: 0, __v: 0,
