@@ -8,8 +8,6 @@ module.exports = {
     try {
       const { userId, filmId, rating } = req.body;
 
-      console.log('RATING CONTR', userId, filmId, rating);
-
       await Rating.findOneAndUpdate(
         { userId, filmId },
         { rating }, {
@@ -27,7 +25,20 @@ module.exports = {
         await Film.findOneAndUpdate({ _id: filmId }, { rating: aveRating });
       }
 
-      res.status(responseCodesEnum.SUCCESS).json('ok');
+      res.status(responseCodesEnum.SUCCESS).json('OK');
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  getRatingById: async (req, res, next) => {
+    try {
+      const { combId } = req.params;
+      const [filmId, userId] = combId.split('|');
+
+      const result = await Rating.find({ userId, filmId });
+
+      res.status(responseCodesEnum.SUCCESS).json(result[0].rating);
     } catch (err) {
       next(err);
     }

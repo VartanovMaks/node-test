@@ -27,7 +27,6 @@ module.exports = {
   getFilmById: async (req, res, next) => {
     try {
       const { filmId } = req.params;
-      console.log('filmId', filmId);
 
       const result = await Rating.find({ filmId });
 
