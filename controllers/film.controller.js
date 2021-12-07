@@ -28,6 +28,7 @@ module.exports = {
     try {
       const { filmId } = req.params;
       console.log('filmId', filmId);
+
       const result = await Rating.find({ filmId });
 
       if (result.length !== 0) {
