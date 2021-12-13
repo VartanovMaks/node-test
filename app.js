@@ -12,6 +12,7 @@ const {
   userRouter,
   userSearchRouter,
   ratingRouter,
+  filmsSearchRouter,
 } = require('./routes');
 
 const { ENV_CONSTANT } = require('./constants');
@@ -41,6 +42,7 @@ app.use('/rating', ratingRouter);
 app.use('/auth', userAuthRouter);
 app.use('/auth/users', userRouter);
 app.use('/users/search', userSearchRouter);
+app.use('/film/search', filmsSearchRouter);
 app.use(_handleErrors);
 
 app.listen(ENV_CONSTANT.PORT, () => {
