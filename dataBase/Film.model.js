@@ -5,7 +5,7 @@ const filmSchema = new Schema({
     type: String,
   },
   year: {
-    type: Number,
+    type: String,
   },
   country: {
     type: String,

@@ -13,4 +13,14 @@ module.exports = {
       next(e);
     }
   },
+  getUserWatchings: async (req, res, next) => {
+    try {
+      const { userId } = req.params;
+      const watchings = await Watching.find({ userId });
+      res.status(responseCodesEnum.SUCCESS).json(watchings);
+    } catch (e) {
+      next(e);
+    }
+  },
+
 };

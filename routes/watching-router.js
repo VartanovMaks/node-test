@@ -7,4 +7,8 @@ router.post('/',
   watchingMiddleWare.incFilmViewsNumber,
   watchingController.createWatching);
 
+router.get('/:userId',
+
+  watchingController.getUserWatchings);
+
 module.exports = router;
