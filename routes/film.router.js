@@ -6,8 +6,14 @@ const { filmMiddleware, fileMiddleware } = require('../middlewares');
 router.get('/',
   filmController.getAllFilms);
 
+router.get('/search',
+  filmController.getFilteredFilms);
+
 router.get('/:filmId',
   filmController.getFilmById);
+
+router.post('/search',
+  filmController.getFilteredFilms);
 
 router.post('/:filmId',
   fileMiddleware.checkPoster,

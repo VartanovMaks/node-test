@@ -5,7 +5,7 @@ module.exports = {
   checkPoster: (req, res, next) => {
     try {
       req.filmData = JSON.parse(req.body.data);
-      // console.log('checkPoster', req.body);
+      console.log('checkPoster', req.body);
       if (req.files && req.files.poster) {
         // console.log('checking poster file image', req.files.poster.name);
         fileService.checkImageFile(req.files.poster);

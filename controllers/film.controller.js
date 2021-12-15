@@ -141,4 +141,34 @@ module.exports = {
     }
   },
 
+  getFilteredFilms: async (req, res, next) => {
+    try {
+      const { searchReq: filmsQuery } = req.query;
+
+      console.log('filmsQuery', filmsQuery);
+      const regexReq = { $regex: filmsQuery, $options: 'i' };
+
+      const films = await Film.find(
+        {
+          $or: [
+            { country: regexReq },
+            { name: regexReq },
+            { year: regexReq },
+            { category: regexReq },
+            { 'director.name': regexReq },
+            { 'actors.name': regexReq },
+
+          ],
+        },
+        {
+          'actors.name': 1, 'director.name': 1, name: 1, year: 1, country: 1, category: 1,
+        },
+      );
+
+      res.json(films);
+    } catch (e) {
+      next(e);
+    }
+  },
+
 };
