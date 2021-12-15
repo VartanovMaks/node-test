@@ -11,7 +11,6 @@ module.exports = {
   checkUserAuthValidity: (req, res, next) => {
     try {
       const { error } = userLoginValidator.authUser.validate(req.body);
-
       if (error) {
         throw new ErrorHandler(
           responseCodesEnum.BAD_REQUEST,
@@ -49,7 +48,6 @@ module.exports = {
   checkAccessToken: async (req, res, next) => {
     try {
       const accessToken = req.get('Authorization');
-
       if (!accessToken) {
         throw new ErrorHandler(
           responseCodesEnum.UNAUTHORIZED,
@@ -77,7 +75,6 @@ module.exports = {
       }
       req.user = tokenObject.user;
       req.role = userData.role;
-
       next();
     } catch (e) {
       next(e);
