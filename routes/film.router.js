@@ -5,6 +5,10 @@ const { filmMiddleware, fileMiddleware } = require('../middlewares');
 
 router.get('/',
   filmController.getAllFilms);
+// ****************************************
+router.get('/count',
+  filmController.getFilmsCount);
+// ***************************************
 
 router.get('/:filmId',
   filmController.getFilmById);
