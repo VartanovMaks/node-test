@@ -5,10 +5,18 @@ module.exports = {
   getFilteredUsers: async (req, res, next) => {
     try {
       const { email } = req.body;
+      const page = +req.query.page;
+      const limit = +req.query.limit;
 
-      const users = await User.find({ email: { $regex: email, $options: 'i' } });
+      console.log('page', page, 'limit', limit);
 
-      res.status(responseCodesEnum.SUCCESS).json(users);
+      const queryUsersQty = await User.find({ email: { $regex: email, $options: 'i' } }).countDocuments();
+
+      const userData = await User.find({ email: { $regex: email, $options: 'i' } }).limit(limit).skip((page - 1) * limit);
+
+      userData.push(queryUsersQty);
+
+      res.status(responseCodesEnum.SUCCESS).json(userData);
     } catch (e) {
       next(e);
     }

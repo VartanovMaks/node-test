@@ -37,7 +37,7 @@ module.exports = {
       const [filmId, userId] = combId.split('|');
 
       const result = await Rating.find({ userId, filmId });
-      console.log('RESULT', result);
+
       res.status(responseCodesEnum.SUCCESS).json(
         result.length !== 0 ? result[0].rating : 0,
       );

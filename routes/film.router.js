@@ -10,8 +10,14 @@ router.get('/count',
   filmController.getFilmsCount);
 // ***************************************
 
+router.get('/search',
+  filmController.getFilteredFilms);
+
 router.get('/:filmId',
   filmController.getFilmById);
+
+router.post('/search',
+  filmController.getFilteredFilms);
 
 router.post('/:filmId',
   fileMiddleware.checkPoster,
