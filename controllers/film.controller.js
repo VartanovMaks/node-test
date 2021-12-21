@@ -1,5 +1,6 @@
 const { Film } = require('../dataBase');
 const { Rating } = require('../dataBase');
+const { paginateService } = require('../services');
 const {
   CONST: {
     POSTER, ACTORS, IMAGES, DIRECTOR,
@@ -18,40 +19,40 @@ module.exports = {
   },
 
   //* ******************************************
-  getAllFilms: async (req, res, next) => {
-    try {
-      if (Object.keys(req.query).length === 0) {
-        const films = await Film.find({});
-        res.json(films);
-      } else {
-        const { skip, limit } = req.query;
-        const films = await Film.find(
-          {},
-          { name: 1, poster: 1, country: 1 },
-        )
-          .limit(+limit)
-          .skip(+skip);
-        res.json(films);
-      }
-    } catch (e) {
-      next(e);
-    }
-  },
-  //* ******************************************
-
   // getAllFilms: async (req, res, next) => {
   //   try {
   //     if (Object.keys(req.query).length === 0) {
   //       const films = await Film.find({});
   //       res.json(films);
   //     } else {
-  //       paginateService.paginateData(req, res);
-  //       // res.json(res.paginatedResult);
+  //       const { skip, limit } = req.query;
+  //       const films = await Film.find(
+  //         {},
+  //         { name: 1, poster: 1, country: 1 },
+  //       )
+  //         .limit(+limit)
+  //         .skip(+skip);
+  //       res.json(films);
   //     }
   //   } catch (e) {
   //     next(e);
   //   }
   // },
+  //* ******************************************
+
+  getAllFilms: async (req, res, next) => {
+    try {
+      if (Object.keys(req.query).length === 0) {
+        const films = await Film.find({});
+        res.json(films);
+      } else {
+        paginateService.paginateData(req, res);
+        // res.json(res.paginatedResult);
+      }
+    } catch (e) {
+      next(e);
+    }
+  },
 
   getFilmById: async (req, res, next) => {
     try {
