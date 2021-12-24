@@ -1,4 +1,5 @@
 const { Film } = require('../dataBase');
+const { responseCodesEnum } = require('../constants');
 const { Rating } = require('../dataBase');
 const { paginateService } = require('../services');
 const {
@@ -144,28 +145,43 @@ module.exports = {
   getFilteredFilms: async (req, res, next) => {
     try {
       const { searchReq: filmsQuery } = req.query;
+      const page = +req.query.page;
+      const limit = +req.query.limit;
+      const { editFilmFlag } = req.query;
 
-      console.log('filmsQuery', filmsQuery);
       const regexReq = { $regex: filmsQuery, $options: 'i' };
 
-      const films = await Film.find(
-        {
-          $or: [
-            { country: regexReq },
-            { name: regexReq },
-            { year: regexReq },
-            { category: regexReq },
-            { 'director.name': regexReq },
-            { 'actors.name': regexReq },
+      if (editFilmFlag) {
+        const queryFilmsQty = await Film.find({
+          $or: [{ name: regexReq }, { year: regexReq }],
+        }).countDocuments();
 
-          ],
-        },
-        {
-          'actors.name': 1, 'director.name': 1, name: 1, year: 1, country: 1, category: 1,
-        },
-      );
+        const filteredFilms = await Film.find({
+          $or: [{ name: regexReq }, { year: regexReq }],
+        }, { name: 1, year: 1 }).limit(limit).skip((page - 1) * limit);
 
-      res.json(films);
+        filteredFilms.push(queryFilmsQty);
+        res.status(responseCodesEnum.SUCCESS).json(filteredFilms);
+      } else {
+        const films = await Film.find(
+          {
+            $or: [
+              { country: regexReq },
+              { name: regexReq },
+              { year: regexReq },
+              { category: regexReq },
+              { 'director.name': regexReq },
+              { 'actors.name': regexReq },
+
+            ],
+          },
+          {
+            'actors.name': 1, 'director.name': 1, name: 1, year: 1, country: 1, category: 1,
+          },
+        );
+
+        res.status(responseCodesEnum.SUCCESS).json(films);
+      }
     } catch (e) {
       next(e);
     }
