@@ -12,8 +12,8 @@ router.get('/search',
 router.get('/:filmId',
   filmController.getFilmById);
 
-router.post('/search',
-  filmController.getFilteredFilms);
+// router.post('/search',
+//   filmController.getFilteredFilms);
 
 router.post('/:filmId',
   fileMiddleware.checkPoster,
